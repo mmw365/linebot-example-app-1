@@ -212,4 +212,5 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'channel_access_token' => env('CHNNEL_ACCESS_TOKEN'),
 ];
