@@ -16,7 +16,7 @@ class ApiController extends Controller
         $text = $request->input('events.0.message.text');
 
         Http::withHeaders([
-            'Authorization' => 'Bearer ' . config('app.channel_access_token') // '',
+            'Authorization' => 'Bearer ' . config('app.channel_access_token'),
         ])->post('https://api.line.me/v2/bot/message/reply', [
             'replyToken' => $replyToken,
             'messages' => [[
