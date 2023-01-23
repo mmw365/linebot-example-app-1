@@ -16,11 +16,13 @@ Ubuntu環境で下のコマンドの実行
 - git clone https://github.com/mmw365/linebot-example-app-1.git
 - cd linebot-example-app-1
 - composer install
-- npm install
-- npm run dev
 
 ### 開発環境の起動
 - ./vendor/bin/sail up -d
+
+### ENVファイルの初期設定
+- cp .env.example .env
+- ./vendor/bin/sail artisan key:generate
 
 ### 開発環境の終了
 - ./vendor/bin/sail sail down
