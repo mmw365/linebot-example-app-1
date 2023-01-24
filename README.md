@@ -13,8 +13,8 @@
 ## 開発環境の設定
 
 Ubuntu 環境で下のコマンドの実行
-- git clone https://github.com/mmw365/linebot-example-app-1.git
-- cd linebot-example-app-1
+- git clone https://github.com/mmw365/linebot-lara1.git
+- cd linebot-lara1
 - composer install
 
 ### 開発環境の起動
