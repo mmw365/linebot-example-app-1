@@ -213,4 +213,5 @@ return [
     ])->toArray(),
 
     'channel_access_token' => env('CHNNEL_ACCESS_TOKEN'),
+    'line_endpoint_url_reply' => env('LINE_ENDPOINT_URL_REPLY'),
 ];

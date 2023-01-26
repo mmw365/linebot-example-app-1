@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('webhook', [ApiController::class, 'webhook']);
+Route::middleware(['msglog'])->post('webhook', [ApiController::class, 'webhook']);
