@@ -2,27 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MessageApiClient;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
-    function webhook(Request $request) {
-        $replyToken = $request->input('events.0.replyToken');
+    function webhook(Request $request, MessageApiClient $messageApiClient) {
         $messagType = $request->input('events.0.message.type');
-        if($messagType != 'text') {
-            return;
+        if($messagType == 'text') {
+            $replyToken = $request->input('events.0.replyToken');
+            $text = $request->input('events.0.message.text');
+            $messageApiClient->sendReplyTextMessage($replyToken, $text);
         }
-        $text = $request->input('events.0.message.text');
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . config('app.channel_access_token'),
-        ])->post(config('app.line_endpoint_url_reply'), [
-            'replyToken' => $replyToken,
-            'messages' => [[
-                'type' => 'text',
-                'text' => $text
-            ]],
-        ]);
+        return response()->json([]);
     }
 }
