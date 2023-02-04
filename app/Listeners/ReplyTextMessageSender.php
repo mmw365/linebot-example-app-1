@@ -7,7 +7,7 @@ use App\Services\MessageApiClient;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class ReplyTextMessageSender
+class ReplyTextMessageSender implements ShouldQueue
 {
     private $messageApiClient;
 

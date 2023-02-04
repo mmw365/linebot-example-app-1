@@ -26,6 +26,10 @@ Ubuntu 環境で下のコマンドの実行
 - cp .env.example .env
 - ./vendor/bin/sail artisan key:generate
 
+### データベースマイグレーション
+
+- sail artisan migrate
+
 ### テストの実行
 
 - ./vendor/bin/sail artisan test
@@ -48,3 +52,8 @@ Ubuntu 環境で下のコマンドの実行
 - .env のCHNNEL_ACCESS_TOKENにLINEのチャネルアクセストークン設定する
 - php artisan config:cache の実行
 - php artisan route:cache の実行
+- php artisan migrate
+
+### データベースキューを使用する場合
+- QUEUE_CONNECTION=sync --> database
+- php artisan queue:work
