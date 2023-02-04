@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\InboundMessageLog;
 use App\Services\MessageApiClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -10,6 +11,8 @@ use Tests\TestCase;
 
 class ApiWebhookTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -21,7 +24,19 @@ class ApiWebhookTest extends TestCase
         $response->assertStatus(404);
     }
 
-    public function test_reply_message_is_sent()
+    public function test_inbound_message_is_logged()
+    {
+        $logCount = InboundMessageLog::count();
+
+        $inMessage = ['id' => 123];
+        $response = $this->postJson('/api/webhook', $inMessage);
+        $response->assertStatus(200);
+        $response->assertExactJson([]);
+
+        $this->assertDatabaseCount('inbound_message_logs', $logCount + 1);
+    }
+
+    public function test_reply_message_is_sent_for_text_message()
     {
         $mock = $this->mock(MessageApiClient::class, function(MockInterface $mock) {
             $mock->shouldReceive('sendReplyTextMessage')->once()->with('dummy-reply-token', 'test message');
