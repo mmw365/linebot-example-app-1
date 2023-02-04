@@ -26,6 +26,10 @@ Ubuntu 環境で下のコマンドの実行
 - cp .env.example .env
 - ./vendor/bin/sail artisan key:generate
 
+### テストの実行
+
+- ./vendor/bin/sail artisan test
+
 ### 開発環境の終了
 
 - ./vendor/bin/sail down
